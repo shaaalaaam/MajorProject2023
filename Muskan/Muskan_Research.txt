@@ -1,0 +1,18 @@
+Highly relatable 
+1.	https://github.com/VedantKhairnar/Adaptive-Traffic-Signal-Control-System
+2.	https://github.com/Baazigar007/Smart-Traffic-Light
+3.	https://github.com/Ujwal2910/Smart-Traffic-Signals-in-India-using-Deep-Reinforcement-Learning-and-Advanced-Computer-Vision
+      
+     moderately 
+4.	https://github.com/SmartTrafficIntersection/SmartTrafficIntersection
+5.	https://github.com/salamzantout/Smart-Traffic-Light
+6.	https://github.com/viplix3/Rajasthan-Hackathon-5.0
+7.	https://github.com/fanton-dev/traffic-brain
+8.	https://github.com/AndreaVidali/Deep-QLearning-Agent-for-Traffic-Signal-Control
+9.	https://github.com/rdulmina/Traffic-Control-Reinforcement-Learing-Agent
+10.	https://github.com/MuhammedMegz/Smart-Traffic-light-control
+11.	https://github.com/wingsweihua/IntelliLight
+
+low
+12.	https://github.com/AbdurRahmanFahad/Smart-Traffic-Signal-Control-System
+13.	https://github.com/SmartTrafficIntersection/SmartTrafficIntersection
