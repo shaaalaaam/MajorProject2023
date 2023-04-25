@@ -40,12 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setInterval(() => {
         counts.forEach((count) => {
-            let currentCount = parseInt(count.textContent);
-            let newCount = Math.max(currentCount - 1, 0) + Math.floor(Math.random() * 10);
-            count.textContent = newCount;
+            count.textContent = Math.floor(Math.random() * 20);
         });
         updateImages();
-    }, 1000);
+    }, 2000);
 
     updateImages();
 });
