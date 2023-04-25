@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const images = document.querySelectorAll('.image');
 
     let greenIndex = 0;
-    let thresholdCount=15;
+    let thresholdCount = 15;
+    let previousGreenIndex = 0;
+    let blinkGreen = false;
+    let blinkDuration = 1000; // Blinking duration in milliseconds
+
     function updateImages() {
         // Convert the NodeList to an array for sorting
         const countsArray = Array.from(counts);
@@ -13,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         countsArray.sort((a, b) => parseInt(b.textContent) - parseInt(a.textContent));
 
         // Check if the lane with the most vehicles should have green light
-        let greenIndex = 0;
-        if (parseInt(countsArray[0].textContent) > thresholdCount ) {
+        if (parseInt(countsArray[0].textContent) > thresholdCount) {
             greenIndex = countsArray.findIndex(count => parseInt(count.textContent) === parseInt(countsArray[0].textContent));
         } else {
             greenIndex = (previousGreenIndex + 1) % countsArray.length;
@@ -23,7 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Loop through the counts array and set the src property of the images accordingly
         countsArray.forEach((count, index) => {
             if (index === greenIndex) {
-                images[index].src = 'images/green.png';
+                if (parseInt(counts[greenIndex].textContent) === 0) {
+                    // Green lane count is zero, blink the light
+                    if (blinkGreen) {
+                        images[index].src = 'images/yellow.png';
+                    } else {
+                        images[index].src = 'images/green.png';
+                    }
+                    blinkGreen = !blinkGreen; // toggle blinkGreen flag
+                } else {
+                    images[index].src = 'images/green.png';
+                }
             } else if (index === (greenIndex + 1) % countsArray.length) {
                 images[index].src = 'images/yellow.png';
             } else {
@@ -35,13 +48,27 @@ document.addEventListener('DOMContentLoaded', function () {
         previousGreenIndex = greenIndex;
     }
 
-
-
-
     setInterval(() => {
-        counts.forEach((count) => {
-            count.textContent = Math.floor(Math.random() * 20);
+        counts.forEach((count, index) => {
+            let currentCount = parseInt(count.textContent);
+            if (index === greenIndex && currentCount > 0) {
+                count.textContent = currentCount - 1;
+            } else {
+                count.textContent = Math.floor(Math.random() * 20);
+            }
         });
+        if (parseInt(counts[greenIndex].textContent) === 0) {
+            // Blink the green light for blinkDuration milliseconds
+            setInterval(() => {
+                if (blinkGreen) {
+                    images[greenIndex].src = 'images/yellow.png';
+                } else {
+                    images[greenIndex].src = 'images/green.png';
+                }
+                blinkGreen = !blinkGreen; // toggle blinkGreen flag
+            }, blinkDuration);
+            greenIndex = (greenIndex + 1) % counts.length;
+        }
         updateImages();
     }, 2000);
 
