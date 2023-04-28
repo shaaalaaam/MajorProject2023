@@ -105,7 +105,7 @@ def index(request):
     # Call start_vehicle_detection function from within a view
     vehicle_count = start_vehicle_detection()
     context = {'vehicle_count': vehicle_count}
-    return render(request, "indexx.html", context)
+    return render(request, "index.html", context)
 
     
 def start_vehicle_detection():
