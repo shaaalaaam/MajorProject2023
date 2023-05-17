@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("My JavaScript file is running.");
     const counts = document.querySelectorAll('.count');
     const images = document.querySelectorAll('.image');
+    const imageLane0=document.querySelector('image-lane0');
 
     let greenIndex = 0;
     let thresholdCount = 15;
@@ -47,16 +48,52 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update the previousGreenIndex for the next call to updateImages()
         previousGreenIndex = greenIndex;
     }
-
+    function updateImageSource() {
+        // Update the source with the current index from the array
+        var img = document.getElementById('image-lane0');
+        // img.src = 'DjangoProject/trafficLight/traffic_light_app/lane_0.jpg';
+        imageLane0.src = 'DjangoProject/trafficLight/traffic_light_app/lane_0.jpg';
+        console.log("Update Image source")
+    }
     setInterval(() => {
-        counts.forEach((count, index) => {
-            let currentCount = parseInt(count.textContent);
-            if (index === greenIndex && currentCount > 0) {
-                count.textContent = currentCount - 1;
-            } else {
-                count.textContent = Math.floor(Math.random() * 20);
-            }
-        });
+        // Fetch the count from the API endpoint for lane1
+        fetch('http://127.0.0.1:9000/get-count0')
+            .then(response => response.text())
+            .then(count => {
+                // Update the count of lane1
+                counts[0].textContent = count;
+            })
+            .catch(error => console.log(error));
+            
+        fetch('http://127.0.0.1:9000/get-count1')
+            .then(response => response.text())
+            .then(count => {
+                // Update the count of lane1
+                counts[1].textContent = count;
+            })
+            .catch(error => console.log(error));
+            
+        fetch('http://127.0.0.1:9000/get-count2')
+            .then(response => response.text())
+            .then(count => {
+                // Update the count of lane1
+                counts[2].textContent = count;
+            })
+            .catch(error => console.log(error));
+            
+        fetch('http://127.0.0.1:9000/get-count3')
+            .then(response => response.text())
+            .then(count => {
+                // Update the count of lane1
+                counts[3].textContent = count;
+            })
+            .catch(error => console.log(error));
+            console.log(counts[0]);
+            console.log(counts[1]);
+            console.log(counts[2]);
+            console.log(counts[3]);
+            console.log('\n');
+            
         if (parseInt(counts[greenIndex].textContent) === 0) {
             // Blink the green light for blinkDuration milliseconds
             setInterval(() => {
@@ -70,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
             greenIndex = (greenIndex + 1) % counts.length;
         }
         updateImages();
-    }, 2000);
-
-    updateImages();
+        updateImageSource();
+    }, 1000);
 });
