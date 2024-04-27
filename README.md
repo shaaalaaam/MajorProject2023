@@ -13,7 +13,7 @@ Our project, named GreenWave: The Smart Traffic Router, is aimed at optimizing v
 
 ## Video Demonstration
 
-Check out the video demonstration of our project to get a better understanding of how it works:
+Check out the video demonstration of our project to get a better understanding of how it works:(click on the picture) 
 
 [![Video Demonstration](https://github.com/shaaalaaam/MajorProject2023/assets/73836150/50a70d4e-2d90-46f9-8572-976a618255ad)](https://drive.google.com/file/d/1KNG3WBS3XYytwQvxBjpDU-nLzBxXa-uk/view?usp=sharing)
 
